@@ -1,0 +1,32 @@
+name_department = {"Ted":["IT"],"Elvis":["HR"],"Alice":["Accounting"],"Curtis":["Maintenance"]}# this will be my directory
+
+with open('file1.txt','w') as f1: #This is the start to write on the directory above.
+    f1.write("{\n")
+    for k in sorted (name_department.keys()):
+      f1.write("'%s' : %s, \n" % (k, name_department[k]))     # start writing to the file
+    f1.close()
+
+with open('file1.txt', 'a+') as f1: #This will be the adding of 3 characters.
+    f1.write("'Susan':['Payroll'], \n""'Sara':['Secretary'], \n" "'Maria':['Support'] \n")
+    f1.write('}')
+    f1.close()
+
+    dict_from_file = []
+with open('file1.txt', 'r') as inf:
+    dict_from_file = eval(inf.read())
+    print("old list:")
+    print(dict_from_file)
+print()
+
+def invert_dict(d): # This will be the inversion of the code.
+    inverse = dict()
+    for key in d:
+        for item in d[key]:
+            if item not in inverse:
+                inverse[item] = [key]
+            else:
+                inverse[item].append(key)
+    print("new list:")
+    print(inverse)
+invert_dict(dict_from_file)
+f1.close()
